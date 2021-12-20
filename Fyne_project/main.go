@@ -81,7 +81,11 @@ func changeContent(c fyne.Canvas) {
  	"fyne.io/fyne/v2/app"
  	"fyne.io/fyne/v2/container"
  	"fyne.io/fyne/v2/widget"
+	 "fyne.io/fyne/v2/canvas"
  )
+
+ 
+func NewCircle(color color.Color) *Circle
 
  func main() {
  	a := app.New()
@@ -96,4 +100,7 @@ func changeContent(c fyne.Canvas) {
  	))
 
  	w.ShowAndRun()
+
+	 
  }
+
