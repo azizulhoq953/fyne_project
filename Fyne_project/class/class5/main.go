@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
@@ -30,11 +31,13 @@ func main() {
 	wform := widget.NewForm(row1, row2, row3, row4)
 	wform.SubmitText = "Save"
 	wform.OnSubmit = func() {
-		name := name.Text
-		message := mobile.Text
-		// email := email.Text
-		// Address := Address.Text
-		myData := fmt.Sprintf(`%v %v`, name, message)
+		name := strings.ToUpper(name.Text)
+
+		mobile := mobile.Text
+		email := strings.ToLower(email.Text) //user to lower case convert
+		Address := Address.Text
+
+		myData := fmt.Sprintf(`%v %v %s %s`, name, mobile, email, Address)
 		dialog.NewInformation("confirmation", myData, myWindow).Show()
 
 	}
