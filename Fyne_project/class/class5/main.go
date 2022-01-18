@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	"fyne.io/fyne/v2"
@@ -11,6 +12,10 @@ import (
 )
 
 func main() {
+
+	addClient("azizul", "01706257588", "azizulhoq4305.com", "Barishal")
+	os.Exit(1)
+
 	myApp := app.New()
 	myWindow := myApp.NewWindow("My Form")
 	myWindow.Resize(fyne.NewSize(400, 600))
