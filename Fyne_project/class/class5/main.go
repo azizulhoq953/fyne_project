@@ -29,11 +29,25 @@ func init() {
 	defer db.Close()
 	log.Println("db connection successful")
 
+	// data := make(url.Values)
+	// data.Set("table", "client")
+	// data.Set("dbtype", "sqlite3")
+
+	// data.Set("name", "AZIZUR")
+	// data.Set("mobile", "01706257588")
+	// data.Set("email", "AZIZULHOQ4305@GMAIL.COM")
+	// data.Set("address", "House #3pa")
+	// pid, err := msql.InsertIntoAnyTable(data, db)
+	// if err != nil {
+	// 	log.Println(err)
+	// 	return
+	// }
+	// fmt.Println("successfully Inserted", pid)
 }
 
 func main() {
 
-	//addClient("azizul", "01706257588", "azizulhoq4305.com", "Barishal")
+	addClient("azizul", "01706257588", "azizulhoq4305.com", "Barishal")
 
 	os.Exit(1)
 
