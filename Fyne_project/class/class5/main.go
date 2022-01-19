@@ -1,9 +1,13 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
+	"log"
 	"os"
 	"strings"
+
+	_ "github.com/mattn/go-sqlite3"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
@@ -11,9 +15,26 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
+var db *sql.DB
+var err error
+
+func init() {
+
+	// Connect to database
+	db, err = sql.Open("sqlite3", "E:/GOLANG/src/master_academy/golang/minierp/mini-erp.db")
+	if err != nil {
+		log.Fatal(err)
+	}
+	db.SetMaxOpenConns(1)
+	defer db.Close()
+	log.Println("db connection successful")
+
+}
+
 func main() {
 
-	addClient("azizul", "01706257588", "azizulhoq4305.com", "Barishal")
+	//addClient("azizul", "01706257588", "azizulhoq4305.com", "Barishal")
+
 	os.Exit(1)
 
 	myApp := app.New()
