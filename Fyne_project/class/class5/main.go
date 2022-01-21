@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	"os"
 	"strings"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -47,9 +46,9 @@ func init() {
 
 func main() {
 
-	addClient("azizul", "01706257588", "azizulhoq4305.com", "Barishal")
+	//addClient("azizul", "01706257588", "azizulhoq4305.com", "Barishal")
 	defer db.Close()
-	os.Exit(1)
+	//os.Exit(1)
 
 	myApp := app.New()
 	myWindow := myApp.NewWindow("My Form")
@@ -57,12 +56,16 @@ func main() {
 
 	name := widget.NewEntry()
 	name.PlaceHolder = "Enter Name"
+
 	mobile := widget.NewEntry()
 	mobile.PlaceHolder = "Enter Your Mobile"
+
 	email := widget.NewEntry()
 	email.PlaceHolder = "Enter Your Email"
+
 	Address := widget.NewMultiLineEntry()
 	Address.PlaceHolder = "Enter Your Address"
+
 	row1 := widget.NewFormItem("Name", name)
 	row2 := widget.NewFormItem("mobile", mobile)
 	row3 := widget.NewFormItem("email", email)
@@ -73,11 +76,19 @@ func main() {
 	wform.OnSubmit = func() {
 		name := strings.ToUpper(name.Text)
 
-		mobile := mobile.Text
-		email := strings.ToLower(email.Text) //user to lower case convert
-		Address := Address.Text
+		phone := mobile.Text
+		emailID := strings.ToLower(email.Text) //user to lower case convert
+		address := Address.Text
 
-		myData := fmt.Sprintf(`%v %v %s %s`, name, mobile, email, Address)
+		id, err := addClient(name, phone, emailID, address)
+		if err != nil {
+			log.Println(err)
+			return
+		}
+
+		myData := fmt.Sprintf(`client added new client ID # %d`, id)
+
+		//myData := fmt.Sprintf(`%v %v %s %s`, name, mobile, email, Address)
 		dialog.NewInformation("confirmation", myData, myWindow).Show()
 
 	}
