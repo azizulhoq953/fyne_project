@@ -26,7 +26,7 @@ func init() {
 		log.Fatal(err)
 	}
 	db.SetMaxOpenConns(1)
-	defer db.Close()
+
 	log.Println("db connection successful")
 
 	// data := make(url.Values)
@@ -48,7 +48,7 @@ func init() {
 func main() {
 
 	addClient("azizul", "01706257588", "azizulhoq4305.com", "Barishal")
-
+	defer db.Close()
 	os.Exit(1)
 
 	myApp := app.New()
