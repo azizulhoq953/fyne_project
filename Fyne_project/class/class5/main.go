@@ -80,11 +80,11 @@ func main() {
 		emailID := strings.ToLower(email.Text) //user to lower case convert
 		address := Address.Text
 
-		id, err := addClient(name, phone, emailID, address)
-		if err != nil {
-			log.Println(err)
-			return
-		}
+		// id, err := addClient(name, phone, emailID, address)
+		// if err != nil {
+		// 	log.Println(err)
+		// 	return
+		// }
 
 		myData := fmt.Sprintf(`client added new client ID # %d`, id)
 
