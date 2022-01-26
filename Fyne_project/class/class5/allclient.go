@@ -11,7 +11,7 @@ import (
 func processAllClientData() [][]string {
 
 	tableData := [][]string{
-		{"Id", "name", "mobile" < "Email", "Address"},
+		{"Id", "name", "Mobile", "Email", "Address"},
 	}
 	rows := GetClient()
 	for i := 0; i < len(rows); i++ {

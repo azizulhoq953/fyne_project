@@ -6,7 +6,6 @@ import (
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/container"
-	"fyne.io/fyne/v2/internal/widget"
 	"fyne.io/fyne/v2/widget"
 )
 
@@ -20,15 +19,17 @@ func ShowClient(a fyne.App) {
 	nameEntry.PlaceHolder = "Enter Client Name"
 	mobileEntry := widget.NewEntry()
 	mobileEntry.PlaceHolder = "Enter Client Number"
+
 	emailEntry := widget.NewEntry()
-	email.PlaceHolder = "Enter client Email Address"
+	emailEntry.PlaceHolder = "Enter client Email Address"
+
 	addressEntry := widget.NewEntry()
-	address.PlaceHolder = "client Address"
+	addressEntry.PlaceHolder = "client Address"
 
 	name1 := widget.NewFormItem("name", nameEntry)
 	mobile1 := widget.NewFormItem("Mobile", mobileEntry)
 	email1 := widget.NewFormItem("email", emailEntry)
-	address1 := widget.NewFormItem("address", address)
+	address1 := widget.NewFormItem("address", addressEntry)
 	clientForm := widget.NewForm(name1, mobile1, email1, address1)
 
 	clientForm.SubmitText = "Save"
@@ -39,7 +40,7 @@ func ShowClient(a fyne.App) {
 		email := emailEntry.Text
 		address := addressEntry.Text
 
-		id, err := addClient(name, phone, emailID, address)
+		id, err := addClient(name, mobile, email, address)
 		if err != nil {
 			log.Println(err)
 			return
