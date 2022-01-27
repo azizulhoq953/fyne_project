@@ -8,7 +8,7 @@ import (
 	"github.com/mateors/msql"
 )
 
-func addClient(name, mobile, email, address string) (int64, error) {
+func AddClient(name, mobile, email, address string) (int64, error) {
 
 	// INSERT INTO Client(name,mobile,email,address)
 	// VALUES("azizul","01706257588","azizulhoq4305@gmail.com", "BARISHAL");
@@ -34,4 +34,15 @@ func addClient(name, mobile, email, address string) (int64, error) {
 
 	return pid, nil
 
+}
+
+func GetClient() []map[string]interface{} {
+
+	qs := "SELECT * FROM client;"
+	rows, err := msql.GetAllRowsByQuery(qs, db)
+
+	if err != nil {
+		panic(err)
+	}
+	return rows
 }

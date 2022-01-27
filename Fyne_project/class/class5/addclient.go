@@ -40,7 +40,7 @@ func ShowClient(a fyne.App) {
 		email := emailEntry.Text
 		address := addressEntry.Text
 
-		id, err := addClient(name, mobile, email, address)
+		id, err := AddClient(name, mobile, email, address)
 		if err != nil {
 			log.Println(err)
 			return
