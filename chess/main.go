@@ -15,6 +15,7 @@ import (
 )
 
 func main() {
+
 	a := app.NewWithID("xyz.andy.chess")
 	win := a.NewWindow("Chess")
 
@@ -23,6 +24,7 @@ func main() {
 	u.eng = loadOpponent()
 	if u.eng != nil {
 		defer u.eng.Close()
+		
 	} else {
 		log.Println("Cound not find stockfish executable, using random player")
 		rand.Seed(time.Now().Unix()) // random seed for random responses
@@ -73,6 +75,7 @@ func move(m *chess.Move, game *chess.Game, white bool, u *ui) {
 		u.over.Move(p)
 		u.over.Refresh()
 	})
+	
 	a.Start()
 	time.Sleep(time.Millisecond * 550)
 
@@ -92,6 +95,7 @@ func move(m *chess.Move, game *chess.Game, white bool, u *ui) {
 		case "0-1":
 			result = "lost"
 		}
+		
 
 		fyne.CurrentApp().Preferences().SetString(preferenceKeyCurrent, "")
 		dialog.ShowInformation("Game ended",
