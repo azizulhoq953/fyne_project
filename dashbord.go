@@ -6,6 +6,8 @@ import (
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/layout"
+	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 )
 
@@ -22,69 +24,120 @@ func ShowDashbod(a fyne.App) {
 	comEmail := comInfo["email"]
 	comMobile := comInfo["mobile"]
 
+	// Header Section - More prominent and clean
 	welcome := fmt.Sprintf("Welcome to %s", comName)
-	onlineInfo := fmt.Sprintf("%s, %s, %s", comWeb, comEmail, comMobile)
-	// widget.Label
-	headLabel := widget.NewCard(
-		welcome,
-		dataConveter(comAddress),
-		widget.NewLabel(onlineInfo),
-	)
-	headLabel.Refresh()
+	onlineInfo := fmt.Sprintf("%s | %s | %s", comWeb, comEmail, comMobile)
 
-	btn1 := widget.NewButton("Add New Client", func() {
-		ShowClient(myApp)
-	})
-	btn2 := widget.NewButton("All Client", func() {
-		ShowData(myApp)
-	})
-	btn3 := widget.NewButton("Add Product", func() {
-		ShowProductAdd(myApp)
-	})
-	btn4 := widget.NewButton("Add Product Group", func() {
-		ShowAddGroupItem(myApp)
-	})
-	btn5 := widget.NewButton("All Product", func() {
-		ShowAllProduct(myApp)
-	})
-	btn6 := widget.NewButton("Invoice", func() {
-		InvoiceDash(myApp)
-	})
+	headLabel := widget.NewCard(
+		"",
+		"",
+		container.NewVBox(
+			widget.NewLabelWithStyle(welcome, fyne.TextAlignCenter, fyne.TextStyle{Bold: true}),
+			widget.NewLabel(dataConveter(comAddress)),
+			widget.NewSeparator(),
+			widget.NewLabel(onlineInfo),
+		),
+	)
 
 	totalClient := processAllClientData()
 	totalClientCount := strconv.Itoa((len(totalClient) - 1))
 
-	card1 := widget.NewCard(
-		totalClientCount,
-		"Total Client",
-		widget.NewProgressBarInfinite(),
-	)
-
 	totalProduct := processAllProductData()
 	totalProductCount := strconv.Itoa((len(totalProduct) - 1))
-	card2 := widget.NewCard(
-		totalProductCount,
-		"Total Product",
-		widget.NewProgressBarInfinite(),
-	)
 
-	splitLeft := container.NewVBox(btn1, btn2, btn3, btn4, btn5, btn6)
-	splitRight := container.NewVBox(container.NewGridWithColumns(2, card1, card2))
-	split := container.NewHSplit(
-		splitLeft,
-		splitRight,
-	)
-
-	split.Offset = 0.2
-
-	win.SetContent(
+	clientCard := widget.NewCard(
+		"Total Clients",
+		"",
 		container.NewVBox(
-			container.NewGridWithColumns(1,
-				container.NewCenter(headLabel),
-			),
-			split,
+			widget.NewLabelWithStyle(totalClientCount, fyne.TextAlignCenter, fyne.TextStyle{Bold: true}),
+			layout.NewSpacer(),
+			widget.NewLabel("Active clients in system"),
 		),
 	)
 
+	productCard := widget.NewCard(
+		"Total Products",
+		"",
+		container.NewVBox(
+			widget.NewLabelWithStyle(totalProductCount, fyne.TextAlignCenter, fyne.TextStyle{Bold: true}),
+			layout.NewSpacer(),
+			widget.NewLabel("Products available"),
+		),
+	)
+
+	statsSection := container.NewGridWithColumns(2, clientCard, productCard)
+
+	clientSection := widget.NewCard(
+		"Client Management",
+		"",
+		container.NewVBox(
+			widget.NewButtonWithIcon("Add New Client", theme.ContentAddIcon(), func() {
+				ShowClient(myApp)
+			}),
+			widget.NewButtonWithIcon("View All Clients", theme.SearchIcon(), func() {
+				ShowData(myApp)
+			}),
+		),
+	)
+
+	productSection := widget.NewCard(
+		"Product Management",
+		"",
+		container.NewVBox(
+			widget.NewButtonWithIcon("Add Product", theme.ContentAddIcon(), func() {
+				ShowProductAdd(myApp)
+			}),
+			widget.NewButtonWithIcon("Add Product Group", theme.FolderNewIcon(), func() {
+				ShowAddGroupItem(myApp)
+			}),
+			widget.NewButtonWithIcon("View All Products", theme.SearchIcon(), func() {
+				ShowAllProduct(myApp)
+			}),
+		),
+	)
+
+	invoiceSection := widget.NewCard(
+		"Invoice Management",
+		"",
+		container.NewVBox(
+			widget.NewButtonWithIcon("Invoice Dashboard", theme.DocumentIcon(), func() {
+				InvoiceDash(myApp)
+			}),
+		),
+	)
+
+	// Layout - Better organization
+	actionButtons := container.NewVBox(
+		clientSection,
+		productSection,
+		invoiceSection,
+	)
+
+	// Main content with better spacing
+	mainContent := container.NewBorder(
+		// Top
+		container.NewVBox(
+			headLabel,
+			widget.NewSeparator(),
+		),
+		nil,
+		// Left
+		nil,
+		// Right
+		nil,
+		// Center
+		container.NewVBox(
+			statsSection,
+			widget.NewSeparator(),
+			container.NewPadded(actionButtons),
+		),
+	)
+
+	// Scrollable content for better responsiveness
+	scrollContent := container.NewVScroll(mainContent)
+	scrollContent.SetMinSize(fyne.NewSize(800, 600))
+
+	win.SetContent(scrollContent)
+	win.Resize(fyne.NewSize(900, 650))
 	win.Show()
 }
