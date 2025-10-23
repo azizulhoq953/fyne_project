@@ -43,11 +43,22 @@ The ERP Desktop System is a robust, cross-platform desktop application designed 
 3. Configure settings via the preferences panel to customize the application.
 
 ## Screenshot
+# dashboard
 ![ERP Desktop System Dashboard](screenshort/dashboard.png)
+
+# add-product
 ![ERP Desktop System Dashboard](screenshort/add-product.png)
+
+# all-product
 ![ERP Desktop System Dashboard](screenshort/all-product.png)
+
+# add-customer
 ![ERP Desktop System Dashboard](screenshort/add-customer.png)
+
+# all-customer
 ![ERP Desktop System Dashboard](screenshort/client.png)
+
+# invoice
 ![ERP Desktop System Dashboard](screenshort/invoice.png)
 
 
@@ -92,4 +103,4 @@ Contributions are welcome! Please follow these steps:
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
-For support or inquiries, please contact [your.email@example.com](mailto:your.email@example.com).
+For support or inquiries, please contact [your.email@example.com](mailto:azizulhoq.ha@gmail.com).
