@@ -22,7 +22,7 @@ The ERP Desktop System is a robust, cross-platform desktop application designed 
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/erp-desktop-system.git
+   git clone https://github.com/azizulhoq953/fyne_project.git
    ```
 2. Navigate to the project directory:
    ```bash
@@ -43,7 +43,14 @@ The ERP Desktop System is a robust, cross-platform desktop application designed 
 3. Configure settings via the preferences panel to customize the application.
 
 ## Screenshot
-![ERP Desktop System Dashboard](screenshots/dashboard.png)
+![ERP Desktop System Dashboard](screenshort/dashboard.png)
+![ERP Desktop System Dashboard](screenshort/add-product.png)
+![ERP Desktop System Dashboard](screenshort/all-product.png)
+![ERP Desktop System Dashboard](screenshort/add-customer.png)
+![ERP Desktop System Dashboard](screenshort/client.png)
+![ERP Desktop System Dashboard](screenshort/invoice.png)
+
+
 
 ## Example Code
 Below is a sample code snippet demonstrating the creation of the main window using the Fyne framework:
