@@ -43,22 +43,22 @@ The ERP Desktop System is a robust, cross-platform desktop application designed 
 3. Configure settings via the preferences panel to customize the application.
 
 ## Screenshot
-# dashboard
+### dashboard
 ![ERP Desktop System Dashboard](screenshort/dashboard.png)
 
-# add-product
+### add-product
 ![ERP Desktop System Dashboard](screenshort/add-product.png)
 
-# all-product
+### all-product
 ![ERP Desktop System Dashboard](screenshort/all-product.png)
 
-# add-customer
+### add-customer
 ![ERP Desktop System Dashboard](screenshort/add-customer.png)
 
-# all-customer
+### all-customer
 ![ERP Desktop System Dashboard](screenshort/client.png)
 
-# invoice
+### invoice
 ![ERP Desktop System Dashboard](screenshort/invoice.png)
 
 
